@@ -3,10 +3,9 @@
         createCombobox, melt 
     } from "@melt-ui/svelte";
     import { Check, ChevronDown, ChevronUp } from 'lucide-svelte';
-    import { onMount } from 'svelte';
     import { fly } from 'svelte/transition';
 
-    let courses = [];
+    export let courses;
 
     const toOption = (course) => ({
         value: course.courseNumber,
@@ -17,13 +16,12 @@
     const {
         elements: { menu, input, option, label },
         states: { open, inputValue, touchedInput, selected },
-        helpers: { isSelected },
     } = createCombobox({
         forceVisible: true,
     });
 
     $: if (!$open) {
-        $inputValue = $selected ? $selected.value : "";
+      $inputValue = $selected ? $selected.value : "";
     }
 
     $: filteredCourses = $touchedInput
@@ -36,27 +34,6 @@
         })
     : courses;
 
-    async function getData() {
-      const response = await fetch('/api/courses/all', {
-        method: 'GET',
-        headers: {
-          'content-type': 'application/json'
-        }
-      });
-
-      let data = await response.json();
-      return data;
-    }
-
-    onMount(() => {
-      getData().then((data) => {
-        const reformattedArray = Object.keys(data.courses).map(courseNumber => ({
-          courseNumber,
-          courseName: data.courses[courseNumber]
-        }));
-        courses = reformattedArray;
-      })
-    });
 </script>
 
 
@@ -104,7 +81,7 @@
         data-[highlighted]:bg-gt data-[highlighted]:text-gtsecondary
           data-[disabled]:opacity-50"
         >
-          {#if $isSelected(course)}
+          {#if course.courseNumber === $selected?.value}
             <div class="check absolute left-2 top-1/2 z-10 text-gtdark">
               <Check class="square-4 scale-75" />
             </div>
@@ -116,7 +93,7 @@
         </li>
       {:else}
         <li class="relative cursor-pointer rounded-md py-1 pl-8 pr-4">
-          No results found
+          Loading Courses...
         </li>
       {/each}
     </div>
@@ -125,7 +102,7 @@
 
 <style lang="postcss">
   .check {
-    @apply absolute left-2 top-1/2;
+    @apply absolute left-0.5 top-1/2;
     translate: 0 calc(-50% + 1px);
   }
 </style>
