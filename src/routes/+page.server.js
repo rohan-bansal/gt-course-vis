@@ -1,4 +1,4 @@
-import courseData from "./src/lib/202402.json";
+import courseData from "$lib/data/202402.json";
 
 // pairs key with the n'th element of the array corresponding to the key
 function getKeysPairedWithNthElement(jsonObj, n) {

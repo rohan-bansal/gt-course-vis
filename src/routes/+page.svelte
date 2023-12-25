@@ -1,5 +1,5 @@
 <script>
-    import CourseSearch from "./CourseSearch.svelte";
+    import CourseSearch from "$lib/components/CourseSearch.svelte";
 
     export let data;
 </script>
