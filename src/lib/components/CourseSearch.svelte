@@ -7,6 +7,8 @@
 
     export let courses;
 
+    let makeRed = false;
+
     const toOption = (course) => ({
         value: course.courseNumber,
         label: course.courseName,
@@ -21,7 +23,12 @@
     });
 
     $: if (!$open) {
-      $inputValue = $selected ? $selected.value : "";
+      if($selected) {
+        $inputValue = $selected.value;
+        makeRed = false;
+      } else {
+        $inputValue = "";
+      }
     }
 
     $: filteredCourses = $touchedInput
@@ -34,6 +41,16 @@
         })
     : courses;
 
+    const redirect = () => {
+      if ($selected) {
+        let designator = $selected.value.split(" ")[0];
+        let number = $selected.value.split(" ")[1];
+        window.location.href = `/courses/${designator}/${number}`;
+      } else {
+        makeRed = true;
+      }
+    }
+
 </script>
 
 
@@ -45,21 +62,37 @@
       >Choose a Course:</span
     >
   </label>
- 
-  <div class="relative font-apple-system">
-    <input
-      use:melt={$input}
-      class="flex h-10 items-center justify-between rounded-lg bg-white
-          px-3 pr-12 text-black"
-      placeholder="Course Number"
-    />
-    <div class="absolute right-2 top-1/2 z-10 -translate-y-1/2 text-gt">
-      {#if $open}
-        <ChevronUp class="square-4" />
+  <div class="flex flex-row">
+    <div class="relative font-apple-system m-auto mr-2">
+      {#if makeRed}
+      <input
+        use:melt={$input}
+        class="flex h-10 items-center justify-between rounded-lg bg-white
+            px-3 pr-12 text-black {makeRed ? 'border-4 border-red-500' : undefined}"
+        placeholder="Course Number"
+      />
       {:else}
-        <ChevronDown class="square-4" />
+      <input
+        use:melt={$input}
+        class="flex h-10 items-center justify-between rounded-lg bg-white
+            px-3 pr-12 text-black"
+        placeholder="Course Number"
+      />
       {/if}
+      
+      <!-- svelte-ignore a11y-click-events-have-key-events a11y-no-static-element-interactions-->
+      <div class="absolute right-2 top-1/2 z-10 -translate-y-1/2 text-gt" on:click={() => $open = !$open}>
+        {#if $open}
+          <ChevronUp class="square-4"/>
+        {:else}
+          <ChevronDown class="square-4"/>
+        {/if}
+      </div>
     </div>
+    <button on:click={() => redirect()} class="rounded-md px-3.5 py-2 m-1 overflow-hidden relative group cursor-pointer border-2 font-medium border-gt text-gt text-gtsecondary">
+      <span class="absolute w-64 h-0 transition-all duration-300 origin-center rotate-45 -translate-x-20 bg-gt top-1/2 group-hover:h-64 group-hover:-translate-y-32 ease"></span>
+      <span class="relative text-gt transition duration-300 group-hover:text-gtsecondary ease">Go</span>
+    </button>
   </div>
 </div>
 {#if $open}
@@ -88,7 +121,7 @@
           {/if}
           <div class="pl-4">
             <span class="font-medium">{course.courseNumber}</span>
-            <span class="block text-sm opacity-75">{course.courseName}</span>
+            <span class="block text-sm opacity-75">{@html course.courseName}</span>
           </div>
         </li>
       {:else}
