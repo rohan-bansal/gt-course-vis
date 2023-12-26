@@ -1,6 +1,20 @@
+import { getCourseDataByFullDesignation } from "$lib/data/parse.js";
+import { error } from "@sveltejs/kit";
+
 export async function load({ params, url }) {
-  console.log(url);
+  let designator = url.pathname.split("/")[2];
+  let course = params.slug;
+
+  let data = getCourseDataByFullDesignation(designator + " " + course);
+  if (!data) {
+    error(404, {
+      message: "Course not found",
+    });
+  }
+
   return {
-    title: params.slug,
+    designator: designator,
+    course: course,
+    fullData: data,
   };
 }

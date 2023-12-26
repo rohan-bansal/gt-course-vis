@@ -6,7 +6,6 @@
     import { fly } from 'svelte/transition';
 
     export let courses;
-
     let makeRed = false;
 
     const toOption = (course) => ({
@@ -16,7 +15,7 @@
     });
 
     const {
-        elements: { menu, input, option, label },
+        elements: { menu, input, option },
         states: { open, inputValue, touchedInput, selected },
     } = createCombobox({
         forceVisible: true,
@@ -31,8 +30,10 @@
       }
     }
 
+    let curInput = ""
     $: filteredCourses = $touchedInput
         ? courses.filter(({ courseNumber, courseName }) => {
+            curInput = $inputValue;
             const normalizedInput = $inputValue.toLowerCase();
             return (
                 courseNumber.toLowerCase().includes(normalizedInput) ||
@@ -42,9 +43,12 @@
     : courses;
 
     const redirect = () => {
-      if ($selected) {
-        let designator = $selected.value.split(" ")[0];
-        let number = $selected.value.split(" ")[1];
+      console.log(curInput)
+      if ($selected || filteredCourses.some((course) => course.courseNumber === curInput)) {
+        makeRed = false;
+        let course = $selected ? $selected.value : curInput;
+        let designator = course.split(" ")[0];
+        let number = course.split(" ")[1];
         window.location.href = `/courses/${designator}/${number}`;
       } else {
         makeRed = true;
@@ -56,24 +60,18 @@
 
  
 <div class="grid place-content-center">
-  <!-- svelte-ignore a11y-label-has-associated-control - $label contains the 'for' attribute -->
-  <label use:melt={$label} class="flex flex-col items-center mb-2">
-    <span class="text-sm font-medium text-gtsecondary font-lemondays font-bold"
-      >Choose a Course:</span
-    >
-  </label>
   <div class="flex flex-row">
     <div class="relative font-apple-system m-auto mr-2">
       {#if makeRed}
       <input
-        use:melt={$input}
+        use:melt={$input} on:keydown={(e) => {if (e.key === "Enter") redirect();}}
         class="flex h-10 items-center justify-between rounded-lg bg-white
             px-3 pr-12 text-black {makeRed ? 'border-4 border-red-500' : undefined}"
         placeholder="Course Number"
       />
       {:else}
       <input
-        use:melt={$input}
+        use:melt={$input} on:keydown={(e) => {if (e.key === "Enter") redirect();}}
         class="flex h-10 items-center justify-between rounded-lg bg-white
             px-3 pr-12 text-black"
         placeholder="Course Number"
@@ -126,7 +124,7 @@
         </li>
       {:else}
         <li class="relative cursor-pointer rounded-md py-1 pl-8 pr-4">
-          Loading Courses...
+          No Courses Found
         </li>
       {/each}
     </div>
