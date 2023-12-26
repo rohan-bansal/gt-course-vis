@@ -4,6 +4,6 @@ export async function load() {
   let data = getCourseNumbersAndNames();
 
   return {
-    courses: data,
+    courses: await data,
   };
 }

@@ -1,4 +1,5 @@
 import courseData from "$lib/data/202402.json";
+import departments from "$lib/data/departments.json";
 
 function getKeysPairedWithNthElement(jsonObj, n) {
   return Object.keys(jsonObj).reduce((result, key) => {
@@ -13,7 +14,7 @@ function getKeysPairedWithNthElement(jsonObj, n) {
   }, {});
 }
 
-export const getCourseNumbersAndNames = () => {
+export const getCourseNumbersAndNames = async () => {
   // pair course numbers with course names
   let data = getKeysPairedWithNthElement(courseData.courses, 0);
 
@@ -26,6 +27,9 @@ export const getCourseNumbersAndNames = () => {
 };
 
 export const getCourseDataByFullDesignation = (fullDesignation) => {
-
   return courseData.courses[fullDesignation];
-}
+};
+
+export const getDepartmentByDesignator = (designator) => {
+  return departments[designator];
+};
