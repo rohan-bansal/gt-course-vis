@@ -2,7 +2,7 @@ import {
   getCourseDataByFullDesignation,
   getDepartmentByDesignator,
   getPrereqs,
-  getPostreqs
+  getPostreqs,
 } from "$lib/data/parse.js";
 import { error } from "@sveltejs/kit";
 
@@ -53,7 +53,8 @@ async function getCourseCreditHoursGPA(designator, course) {
   try {
     creditHrs =
       data.header[0].credits !== null ? data.header[0].credits : "N/A";
-    GPA = data.finalAvgs[0].GPA !== null ? data.finalAvgs[0].GPA : "N/A";
+    GPA =
+      data.finalAvgs[0].GPA !== null ? data.finalAvgs[0].GPA.toFixed(2) : "N/A";
   } catch (e) {
     creditHrs = "N/A";
     GPA = "N/A";
