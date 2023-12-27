@@ -1,6 +1,8 @@
 import {
   getCourseDataByFullDesignation,
   getDepartmentByDesignator,
+  getPrereqs,
+  getPostreqs
 } from "$lib/data/parse.js";
 import { error } from "@sveltejs/kit";
 
@@ -16,8 +18,15 @@ export async function load({ params, url }) {
     course: course,
     department: getDepartmentByDesignator(designator),
     creditHrsGPA: getCourseCreditHoursGPA(designator, course),
+    reqs: await getRequisites(designator, course),
     fullData: await getCourseData(designator, course),
   };
+}
+
+async function getRequisites(designator, course) {
+  const prereqs = getPrereqs(designator + " " + course);
+  const postreqs = getPostreqs(designator + " " + course);
+  return [prereqs, postreqs];
 }
 
 async function getCourseData(designator, course) {
@@ -68,7 +77,10 @@ async function getCourseCreditHoursGPA(designator, course) {
       // If the phrase is found, get the element immediately preceding it
       if (index !== -1) {
         // Split the string into an array of words
-        const words = creditHrsElement.substring(0, index).split(" ").filter((word) => word !== "");
+        const words = creditHrsElement
+          .substring(0, index)
+          .split(" ")
+          .filter((word) => word !== "");
 
         // Return the last element in the array (immediately preceding "credit hours")
         creditHrs = words[words.length - 1].split(".")[0];
@@ -76,7 +88,6 @@ async function getCourseCreditHoursGPA(designator, course) {
     } catch (e) {
       creditHrs = "N/A";
     }
-    
   }
 
   return [creditHrs, GPA];

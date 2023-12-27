@@ -3,7 +3,7 @@
     import { createTooltip, melt } from '@melt-ui/svelte';
     import { fade } from 'svelte/transition';
 
-    import { ExternalLink, HelpCircle } from 'lucide-svelte'; 
+    import { ExternalLink, HelpCircle, Link } from 'lucide-svelte'; 
     export let data;
 
     let courseDesignator = data.designator;
@@ -42,7 +42,7 @@
         </h1>
     {:then creditHoursGPA} 
         <h1 class="text-sm font-mono text-gtsecondary">
-            {courseDepartment} | 
+            <a href="/courses/{courseDesignator}"><span><Link class="inline-block mr-1 scale-75" /></span>{courseDepartment}</a> | 
             <span class="text-gt">{creditHoursGPA[0]}</span> 
             {creditHoursGPA[0] === "1" ? "Credit Hr" : "Credit Hrs"} 
             {#if creditHoursGPA[1] === "N/A"}
