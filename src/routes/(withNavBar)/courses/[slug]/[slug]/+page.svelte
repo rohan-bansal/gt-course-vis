@@ -1,12 +1,28 @@
 <script>
 
-    import { ExternalLink} from 'lucide-svelte';    
+    import { createTooltip, melt } from '@melt-ui/svelte';
+    import { fade } from 'svelte/transition';
+
+    import { ExternalLink, HelpCircle } from 'lucide-svelte'; 
     export let data;
 
     let courseDesignator = data.designator;
     let courseNumber = data.course;
     let courseDepartment = data.department;
     let courseDescription = data.fullData[0];
+
+    const {
+        elements: { trigger, content, arrow },
+        states: { open },
+    } = createTooltip({
+        positioning: {
+        placement: 'top',
+        },
+        openDelay: 0,
+        closeDelay: 0,
+        closeOnPointerDown: false,
+        forceVisible: true,
+    });
 </script>
 
 <div class="flex flex-col items-center justify-start mt-12">
@@ -26,8 +42,31 @@
         </h1>
     {:then creditHoursGPA} 
         <h1 class="text-sm font-mono text-gtsecondary">
-            {courseDepartment} | <span class="text-gt">{creditHoursGPA[0]}</span> Credit Hrs | <span class="text-gt">{creditHoursGPA[1]}</span> GPA
+            {courseDepartment} | 
+            <span class="text-gt">{creditHoursGPA[0]}</span> 
+            {creditHoursGPA[0] === "1" ? "Credit Hr" : "Credit Hrs"} 
+            {#if creditHoursGPA[1] === "N/A"}
+                <span>
+                    <button type="button" class="trigger" use:melt={$trigger} aria-label="Add">
+                        <HelpCircle class="inline-block" />
+                    </button>
+                </span>
+            {:else}
+                {""}
+            {/if}
+            | <span class="text-gt">{creditHoursGPA[1]}</span> GPA
         </h1>
     {/await}
+
+    {#if $open}
+    <div
+        use:melt={$content}
+        transition:fade={{ duration: 100 }}
+        class="z-10 rounded-lg bg-gt shadow"
+    >
+        <div use:melt={$arrow} />
+        <p class="px-4 py-1 text-gtsecondary">Data pulled from Oscar since Critique was unavailable.</p>
+    </div>
+    {/if}
     
 </div>
