@@ -16,7 +16,7 @@
             <span class="text-3xl text-gtsecondary">{fullDeptName}</span> <span class="text-gtsecondary">(</span>{designator}<span class="text-gtsecondary">)</span>
         </h1>
     </div>
-    <div class="h-96 w-3/4 p-2 py-4 grid lg:grid-cols-9 sm:grid-cols-4 gap-4 grid-flow-row overflow-scroll border-solid border-gtsecondary border-2 rounded-md text-center">
+    <div class="h-72 md:h-96 w-3/4 p-2 py-4 grid md:grid-cols-8 grid-cols-2 gap-4 grid-flow-row overflow-scroll border-solid border-gtsecondary border-2 rounded-md text-center">
     {#each courseList as course}
         <div>
             <a href="/courses/{designator}/{extractCourseNumber(course)}">
