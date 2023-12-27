@@ -33,7 +33,7 @@
         <a target="_blank" href="https://oscar.gatech.edu/pls/bprod/bwckctlg.p_disp_course_detail?cat_term_in=202402&subj_code_in={courseDesignator}&crse_numb_in={courseNumber}"><ExternalLink class="ml-1 text-gtsecondary"/></a>
     </div>
 
-    <h1 class="text-xl font-mono text-gtsecondary mb-4 underline decoration-wavy decoration-2 underline-offset-8">
+    <h1 class="text-xl text-center leading-9 font-mono text-gtsecondary mb-2 underline decoration-wavy decoration-2 underline-offset-8">
         {@html courseDescription}
     </h1>
     {#await data.creditHrsGPA}

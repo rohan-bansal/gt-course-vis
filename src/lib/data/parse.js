@@ -34,6 +34,13 @@ export const getDepartmentByDesignator = (designator) => {
   return departments[designator];
 };
 
+export const getAllCoursesByDesignator = (designator) => {
+  let courseNames = Object.keys(courseData.courses);
+  let courses = courseNames.filter((course) => { return course.startsWith(designator); });
+  
+  return courses;
+}
+
 export const getPrereqs = (fullDesignation) => {
   let data = getCourseDataByFullDesignation(fullDesignation);
   if (!data) {
