@@ -25,15 +25,15 @@
     });
 </script>
 
-<div class="flex flex-col items-center justify-start mt-12">
+<div class="flex flex-col items-center justify-start mt-4 md:mt-12 p-4">
     <div class="flex flex-row">
-        <h1 class="text-5xl font-lemondays text-gtsecondary mb-2 ml-6 ">
+        <h1 class="text-4xl md:text-5xl font-lemondays text-gtsecondary mb-2 ml-6 ">
             <span class="text-gt">{courseDesignator}</span>{courseNumber}
         </h1>
         <a target="_blank" href="https://oscar.gatech.edu/pls/bprod/bwckctlg.p_disp_course_detail?cat_term_in=202402&subj_code_in={courseDesignator}&crse_numb_in={courseNumber}"><ExternalLink class="ml-1 text-gtsecondary"/></a>
     </div>
 
-    <h1 class="text-md md:text-xl text-center leading-9 font-mono text-gtsecondary mb-3 underline decoration-wavy decoration-2 underline-offset-8">
+    <h1 class="text-md md:text-xl text-center leading-9 font-mono text-gtsecondary mb-4 underline decoration-wavy decoration-2 underline-offset-8">
         {@html courseDescription}
     </h1>
     {#await data.creditHrsGPA}
@@ -41,7 +41,7 @@
             ...
         </h1>
     {:then creditHoursGPA} 
-        <h1 class="text-sm font-mono text-gtsecondary">
+        <h1 class="text-sm font-mono text-gtsecondary text-center">
             <a href="/courses/{courseDesignator}"><span><Link class="inline-block mr-1 scale-75" /></span>{courseDepartment}</a> | 
             <span class="text-gt">{creditHoursGPA[0]}</span> 
             {creditHoursGPA[0] === "1" ? "Credit Hr" : "Credit Hrs"} 
@@ -69,4 +69,12 @@
     </div>
     {/if}
     
+</div>
+<div class="flex-1 flex-col md:flex-row mt-4 md:mt-6 mx-2 md:mx-12">
+    <div class="flex-auto rounded-md border-4 border-solid border-gtsecondary mb-2 md:mr-2 md:mb-0">
+
+    </div>
+    <div class="flex-auto rounded-md border-4 border-solid border-gtsecondary mt-2 md:ml-2 md:mt-0">
+
+    </div>
 </div>

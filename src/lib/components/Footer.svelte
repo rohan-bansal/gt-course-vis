@@ -3,7 +3,7 @@
 </script>
 
 <footer>
-    <div class="absolute bottom-0 w-full h-16">
+    <div class="w-full h-16">
         <div class="flex flex-row md:justify-end justify-center items-center h-full px-8">
             <div class="flex flex-row items-center">
                 <p class="text-gtsecondary font-mono mr-2"><span class="text-gt">v1.0</span>, made by 

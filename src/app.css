@@ -4,9 +4,12 @@
 
 @layer base {
   html,
+  body,
   body > div:first-child {
     height: 100%;
+    margin: 0;
   }
+
 
   html {
     background-color: #161716;
