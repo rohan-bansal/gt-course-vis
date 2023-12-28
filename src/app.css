@@ -10,19 +10,19 @@
     margin: 0;
   }
 
-  ::-webkit-scrollbar {
-    width: 4px;
+  /* ::-webkit-scrollbar {
+    width: 4px;  
   }
 
   ::-webkit-scrollbar-track {
     box-shadow: inset 0 0 5px #212023;
-    border-radius: 10px;
+    border-radius: 1px;
   }
 
   ::-webkit-scrollbar-thumb {
     @apply bg-gt;
     border-radius: 1px;
-  }
+  } */
 
   .leftmost-conditional {
     @apply border-t-4;

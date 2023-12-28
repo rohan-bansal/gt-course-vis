@@ -75,7 +75,7 @@
     <div class="flex-auto rounded-md">
 
     </div>
-    <div class="flex-auto rounded-md mt-2 md:mx-2 md:mt-0 items-center">
+    <div class="flex-auto rounded-md mt-2 md:mx-2 md:mt-0 items-center overflow-x-scroll">
         <PrereqTree treeData={data.reqs[0]} course={courseDesignator + " " + courseNumber}/>
     </div>
     <div class="flex-auto rounded-md">
