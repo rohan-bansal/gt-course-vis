@@ -21,7 +21,7 @@
         <div>
             <a href="/courses/{designator}/{extractCourseNumber(course)}">
                 <h1 class="text-xl font-lemondays text-gtsecondary mb-4 underline decoration-dashed decoration-2 underline-offset-8">
-                    <span class="text-gt">{designator}</span>{extractCourseNumber(course)}
+                    <span class="text-gt">{designator}</span> {extractCourseNumber(course)}
                 </h1>
             </a>
         </div>

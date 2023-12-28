@@ -53,7 +53,7 @@
             </ul>
         {:else}
             <div class="relative {index === 0 ? "leftmost-course" : (index === maxIndex ? "rightmost-course" : "")}">
-                <button on:click={() => redirect(data['id'])} class="border-2 border-[#64CCC9] rounded-md p-2 font-lemondays text-gtsecondary m-0.5 w-28"><span class="text-gt">{data['id'].split(" ")[0]}</span>{data['id'].split(" ")[1]}</button>
+                <button on:click={() => redirect(data['id'])} class="border-2 border-[#64CCC9] rounded-md p-2 font-lemondays text-gtsecondary m-0.5 w-28"><span class="text-gt">{data['id'].split(" ")[0]}</span> {data['id'].split(" ")[1]}</button>
             </div>
         {/if}
     {/if}
