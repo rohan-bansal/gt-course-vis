@@ -10,6 +10,7 @@ export default {
         gt: "#EAAA00",
         gtsecondary: "#F9F6E5",
         gtdark: "#54585A",
+        gtbg: "#161716",
       },
     },
   },

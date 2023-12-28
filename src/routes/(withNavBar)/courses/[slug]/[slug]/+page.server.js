@@ -31,9 +31,16 @@ async function getRequisites(designator, course) {
 
 async function getCourseData(designator, course) {
   let data = getCourseDataByFullDesignation(designator + " " + course);
+
+  if (course.toLowerCase().includes("x")) {
+    error(404, {
+      message: "Elective/Transfer Course (No Data Available)",
+    });
+  }
+
   if (!data) {
     error(404, {
-      message: "Course not found",
+      message: "Course Not Found (Not Offered Anymore?)",
     });
   }
 

@@ -43,7 +43,6 @@
     : courses;
 
     const redirect = () => {
-      console.log(curInput)
       if ($selected || filteredCourses.some((course) => course.courseNumber === curInput)) {
         makeRed = false;
         let course = $selected ? $selected.value : curInput;

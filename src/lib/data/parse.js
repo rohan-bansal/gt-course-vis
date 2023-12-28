@@ -36,16 +36,20 @@ export const getDepartmentByDesignator = (designator) => {
 
 export const getAllCoursesByDesignator = (designator) => {
   let courseNames = Object.keys(courseData.courses);
-  let courses = courseNames.filter((course) => { return course.startsWith(designator); });
-  
+  let courses = courseNames.filter((course) => {
+    return course.startsWith(designator);
+  });
+
   return courses;
-}
+};
 
 export const getPrereqs = (fullDesignation) => {
   let data = getCourseDataByFullDesignation(fullDesignation);
   if (!data) {
     return null;
   }
+
+  // first index retrieves course prereq tree, second index retrieves prereq tree root
   let prereqs = data[2];
   return prereqs;
 };

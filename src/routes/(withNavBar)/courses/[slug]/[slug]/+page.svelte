@@ -4,6 +4,7 @@
     import { fade } from 'svelte/transition';
 
     import { ExternalLink, HelpCircle, Link } from 'lucide-svelte'; 
+	import PrereqTree from '$lib/components/PrereqTree.svelte';
     export let data;
 
     let courseDesignator = data.designator;
@@ -71,10 +72,13 @@
     
 </div>
 <div class="flex flex-1 flex-col md:flex-row mt-4 md:mt-6 mx-2 md:mx-12 mb-0 md:mb-4">
-    <div class="flex-auto rounded-md border-4 border-solid border-gtsecondary mb-2 md:mr-2 md:mb-0">
+    <div class="flex-auto rounded-md">
 
     </div>
-    <div class="flex-auto rounded-md border-4 border-solid border-gtsecondary mt-2 md:ml-2 md:mt-0">
+    <div class="flex-auto rounded-md mt-2 md:mx-2 md:mt-0 items-center">
+        <PrereqTree treeData={data.reqs[0]} course={courseDesignator + " " + courseNumber}/>
+    </div>
+    <div class="flex-auto rounded-md">
 
     </div>
 </div>
