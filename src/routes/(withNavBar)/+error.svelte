@@ -6,7 +6,7 @@
     <h1 class="text-5xl font-lemondays text-gt mb-4">
         {$page.status}
     </h1>
-    <h1 class="text-xl font-mono text-gtsecondary underline decoration-solid decoration-2 underline-offset-8">
+    <h1 class="text-xl text-center font-mono text-gtsecondary underline decoration-solid decoration-2 underline-offset-8">
         {$page.error.message}
     </h1>
 </div>
