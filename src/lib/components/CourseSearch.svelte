@@ -63,17 +63,17 @@
   <div class="flex flex-row">
     <div class="relative font-apple-system m-auto mr-2">
       {#if makeRed}
-      <input
+      <input on:focus|preventDefault
         use:melt={$input} on:keydown={(e) => {if (e.key === "Enter") redirect();}}
         class="flex h-10 items-center justify-between rounded-lg bg-white
-            px-3 pr-12 text-black {makeRed ? 'border-4 border-red-500' : undefined}"
+            px-3 pr-[3.6rem] text-black {makeRed ? 'border-4 border-red-500' : undefined}"
         placeholder="Course Number"
       />
       {:else}
       <input
         use:melt={$input} on:keydown={(e) => {if (e.key === "Enter") redirect();}}
         class="flex h-10 items-center justify-between rounded-lg bg-white
-            px-3 pr-12 text-black"
+            px-3 pr-[3.6rem] text-black"
         placeholder="Course Number"
       />
       {/if}
@@ -95,7 +95,7 @@
 </div>
 {#if $open}
   <ul
-    class="z-10 flex max-h-[300px] flex-col overflow-hidden rounded-lg"
+    class="z-10 flex max-h-[300px] flex-col overflow-hidden overflow-x-visible rounded-lg"
     use:melt={$menu}
     transition:fly={{ duration: 150, y: -5 }}
   >
