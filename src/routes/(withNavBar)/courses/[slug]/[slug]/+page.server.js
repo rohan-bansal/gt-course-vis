@@ -40,7 +40,7 @@ async function getCourseData(designator, course) {
 
   if (!data) {
     error(404, {
-      message: "Course Not Found (Not Offered Anymore?)",
+      message: "Course Not Found (Not Offered This Semester?)",
     });
   }
 
