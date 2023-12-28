@@ -55,7 +55,7 @@
             {:else}
                 {""}
             {/if}
-            | <span class="text-gt">{creditHoursGPA[1]}</span> GPA
+            | <span class="text-gt">{creditHoursGPA[1]}</span> Avg. GPA
         </h1>
     {/await}
 
