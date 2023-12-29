@@ -11,6 +11,7 @@
     let courseNumber = data.course;
     let courseDepartment = data.department;
     let courseDescription = data.fullData[0];
+    let courseFullDescription = data.fullData[3];
 
     const {
         elements: { trigger, content, arrow },
@@ -24,6 +25,12 @@
         closeOnPointerDown: false,
         forceVisible: true,
     });
+
+    const redirect = (courseName) => {
+        let designator = courseName.split(" ")[0];
+        let number = courseName.split(" ")[1];
+        window.location.href = `/courses/${designator}/${number}`;
+    }
 </script>
 
 <div class="flex flex-col items-center justify-start p-4">
@@ -46,6 +53,7 @@
             <a href="/courses/{courseDesignator}"><span><Link class="text-gt inline-block mr-1 scale-75" /></span>{courseDepartment}</a> | 
             <span class="text-gt">{creditHoursGPA[0]}</span> 
             {creditHoursGPA[0] === "1" ? "Credit Hr" : "Credit Hrs"} 
+            | <span class="text-gt">{creditHoursGPA[1]}</span> Avg. GPA
             {#if creditHoursGPA[1] === "N/A"}
                 <span>
                     <button type="button" class="trigger" use:melt={$trigger} aria-label="Add">
@@ -55,7 +63,6 @@
             {:else}
                 {""}
             {/if}
-            | <span class="text-gt">{creditHoursGPA[1]}</span> Avg. GPA
         </h1>
     {/await}
 
@@ -72,13 +79,24 @@
     
 </div>
 <div class="flex flex-1 flex-col md:flex-row mt-4 md:mt-6 mx-2 md:mx-12 mb-0 md:mb-4">
-    <div class="flex-auto rounded-md">
-
+    <div class="flex-1 rounded-md max-w-full md:max-w-[30%]">
+        <h1 class="font-lemondays text-center text-2xl text-gtsecondary underline decoration-gt underline-offset-4 decoration-4 mb-3">Info</h1>
+        <p class="text-center text-gtsecondary font-mono text-sm border-2 rounded-md border-dashed p-1.5 border-gt">{courseFullDescription}</p>
     </div>
-    <div class="flex-auto rounded-md mt-2 md:mx-2 md:mt-0 items-center overflow-x-scroll">
+    <div class="flex-auto rounded-md mt-3 mb-3 md:mx-2 md:mt-0 md:mb-0 items-center overflow-x-scroll">
         <PrereqTree treeData={data.reqs[0]} course={courseDesignator + " " + courseNumber}/>
     </div>
-    <div class="flex-auto rounded-md">
+    <div class="flex-1 rounded-md max-w-full md:max-w-[30%]">
+        <h1 class="font-lemondays text-center text-2xl text-gtsecondary underline decoration-gt underline-offset-4 decoration-4 mb-3">Prereq For</h1>
+        <div class="flex flex-col items-center justify-center">
+            {#if data.reqs[1].length === 0}
+                <button class="border-2 border-gthorizon rounded-md p-2 font-lemondays text-gtsecondary m-0.5 w-28">None</button>
+            {:else}
+                {#each data.reqs[1] as req}
+                    <button on:click={() => redirect(req)} class="border-2 border-gthorizon rounded-md p-2 font-lemondays text-gtsecondary m-0.5 w-28"><span class="text-gt">{req.split(" ")[0]}</span> {req.split(" ")[1]}</button>
+                {/each}
+            {/if}
 
+        </div>
     </div>
 </div>

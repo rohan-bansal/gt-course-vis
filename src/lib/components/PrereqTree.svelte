@@ -8,7 +8,7 @@
 
 <div class="text-center text-gtsecondary my-1.5 mx-0 md:mx-4 md:my-4">
     <div>
-        <button class="border-4 border-gt rounded-md p-2 font-lemondays text-gtsecondary"><span class="text-gt">{course.split(" ")[0]}</span> {course.split(" ")[1]}</button>
+        <button class="border-4 border-gt rounded-md p-2 font-lemondays text-gtsecondary w-28 m-0.5"><span class="text-gt">{course.split(" ")[0]}</span> {course.split(" ")[1]}</button>
     </div>
     <div class="bg-gtsecondary h-8 w-1 m-1 mx-auto"></div>
     {#if treeData.length === 0}

@@ -40,7 +40,7 @@ async function getCourseData(designator, course) {
 
   if (!data) {
     error(404, {
-      message: "Course Not Found (Not Offered This Semester?)",
+      message: "Course Not Found (Not Offered This Semester)",
     });
   }
 
@@ -48,23 +48,34 @@ async function getCourseData(designator, course) {
 }
 
 async function getCourseCreditHoursGPA(designator, course) {
+  let creditHrs = 0;
+  let GPA = 0;
+
   const res = await axios({
     method: "get",
     url: `https://c4citk6s9k.execute-api.us-east-1.amazonaws.com/prod/data/course?courseID=${designator}%20${course}`,
     timeout: 10000,
+  }).catch((e) => {
+    return null;
   });
 
-  const data = res.data;
-  let creditHrs = 0;
-  let GPA = 0;
-  try {
-    creditHrs =
-      data.header[0].credits !== null ? data.header[0].credits : "N/A";
-    GPA =
-      data.finalAvgs[0].GPA !== null ? data.finalAvgs[0].GPA.toFixed(2) : "N/A";
-  } catch (e) {
+  if (!res) {
     creditHrs = "N/A";
     GPA = "N/A";
+  } else {
+    const data = res.data;
+
+    try {
+      creditHrs =
+        data.header[0].credits !== null ? data.header[0].credits : "N/A";
+      GPA =
+        data.finalAvgs[0].GPA !== null
+          ? data.finalAvgs[0].GPA.toFixed(2)
+          : "N/A";
+    } catch (e) {
+      creditHrs = "N/A";
+      GPA = "N/A";
+    }
   }
 
   // if credit hours is N/A, try to get it from oscar instead. could be a new course that doesn't have course critique data yet
@@ -74,7 +85,13 @@ async function getCourseCreditHoursGPA(designator, course) {
         method: "get",
         url: `https://oscar.gatech.edu/pls/bprod/bwckctlg.p_disp_course_detail?cat_term_in=202402&subj_code_in=${designator}&crse_numb_in=${course}`,
         timeout: 10000,
+      }).catch((e) => {
+        return null;
       });
+
+      if (!res) {
+        return [creditHrs, GPA];
+      }
 
       const dom = new JSDOM(res.data);
       const creditHrsElement =
