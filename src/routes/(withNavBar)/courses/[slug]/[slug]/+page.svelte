@@ -50,7 +50,9 @@
     </h1>
     {#await data.creditHrsGPA}
         <h1 class="text-sm font-mono text-gtsecondary">
+            <Link class="text-gt inline-block invisible scale-75" />
             ...
+            <Link class="text-gt inline-block invisible scale-75" />
         </h1>
     {:then creditHoursGPA} 
         <h1 class="text-sm font-mono text-gtsecondary text-center">
