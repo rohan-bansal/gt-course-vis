@@ -10,6 +10,10 @@
     }
 </script>
 
+<svelte:head>
+    <title>{designator} | GT Course Visualizer</title> 
+</svelte:head>
+
 <div class="flex flex-1 flex-col items-center justify-start mt-12">
     <div class="flex flex-row items-center mb-12">
         <h1 class="text-4xl font-lemondays text-center text-gt mb-2 ml-2 underline underline-offset-8 decoration-gtsecondary">

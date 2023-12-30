@@ -72,7 +72,7 @@
       <input
         use:melt={$input} on:keydown={(e) => {if (e.key === "Enter") redirect();}}
         class="flex h-10 items-center justify-between rounded-lg bg-white
-            px-3 pr-[3.6rem] text-black"
+            px-3 pr-[3.0rem] text-black"
         placeholder="Course Number"
       />
       {/if}
@@ -100,7 +100,7 @@
   >
     <!-- svelte-ignore a11y-no-noninteractive-tabindex -->
     <div
-      class="flex max-h-full flex-col gap-0 overflow-y-auto bg-white px-2 py-2 text-black"
+      class="flex max-h-full flex-col gap-0 overflow-y-auto overflow-x-clip bg-white px-2 py-2 text-black"
       tabindex="0"
     >
       {#each filteredCourses as course, index (index)}

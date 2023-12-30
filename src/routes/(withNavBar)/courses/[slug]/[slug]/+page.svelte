@@ -33,6 +33,10 @@
     }
 </script>
 
+<svelte:head>
+    <title>{courseDesignator + " " + courseNumber} | GT Course Visualizer</title> 
+</svelte:head>
+
 <div class="flex flex-col items-center justify-start p-4">
     <div class="flex flex-row">
         <h1 class="text-4xl md:text-5xl font-lemondays text-gtsecondary mb-2 ml-6 ">
@@ -78,22 +82,34 @@
     {/if}
     
 </div>
-<div class="flex flex-1 flex-col md:flex-row mt-4 md:mt-6 mx-2 md:mx-12 mb-0 md:mb-4">
-    <div class="flex-1 rounded-md max-w-full md:max-w-[30%]">
-        <h1 class="font-lemondays text-center text-2xl text-gtsecondary underline decoration-gt underline-offset-4 decoration-4 mb-3">Info</h1>
-        <p class="text-center text-gtsecondary font-mono text-sm border-2 rounded-md border-dashed p-1.5 border-gt">{courseFullDescription}</p>
+<div class="flex flex-1 justify-center flex-col md:flex-row mt-4 md:mt-6 mx-2 md:mx-12 mb-0 md:mb-4">
+    <div class="flex-1 flex flex-col rounded-md max-w-full md:max-w-[33%] text-center">
+        <h1 class="font-lemondays text-2xl text-gtsecondary underline decoration-gt underline-offset-4 decoration-4 mb-3">Info</h1>
+        <div class="flex flex-col border-gt border-dashed border-2 md:border-none rounded-md p-1.5 m-2">
+            <p class="text-gtsecondary font-mono text-sm p-1.5">{@html courseFullDescription}</p>
+            <a class="text-gt underline decoration-gtsecondary flex mx-auto" href="https://oscar.gatech.edu/pls/bprod/bwckctlg.p_disp_course_detail?cat_term_in=202402&subj_code_in={courseDesignator}&crse_numb_in={courseNumber}">Oscar <span class="inline-block scale-75 align-center"><ExternalLink /></span></a>
+            {#await data.creditHrsGPA}
+                <h1 class="text-gt underline">...</h1>
+            {:then creditHrsGPA} 
+                {#if creditHrsGPA[1] !== "N/A"}
+                    <a class="text-gt underline decoration-gtsecondary flex mx-auto" href="https://critique.gatech.edu/course?courseID={courseDesignator}%20{courseNumber}">Course Critique <span class="inline-block scale-75 align-center"><ExternalLink /></span></a>
+                {/if}
+            {/await}
+        </div>
+        
+
     </div>
     <div class="flex-auto rounded-md mt-3 mb-3 md:mx-2 md:mt-0 md:mb-0 items-center overflow-x-scroll">
         <PrereqTree treeData={data.reqs[0]} course={courseDesignator + " " + courseNumber}/>
     </div>
-    <div class="flex-1 rounded-md max-w-full md:max-w-[30%]">
-        <h1 class="font-lemondays text-center text-2xl text-gtsecondary underline decoration-gt underline-offset-4 decoration-4 mb-3">Prereq For</h1>
-        <div class="flex flex-col items-center justify-center">
+    <div class="flex-1 rounded-md max-w-full md:max-w-[33%]">
+        <h1 class="font-lemondays text-center text-2xl text-gtsecondary underline decoration-gt underline-offset-4 decoration-4 mb-3 mt-4 md:mt-0">Prereq For</h1>
+        <div class="text-center items-center justify-center p-1.5 m-2">
             {#if data.reqs[1].length === 0}
-                <button class="border-2 border-gthorizon rounded-md p-2 font-lemondays text-gtsecondary m-0.5 w-28">None</button>
+                <button class="border-2 border-gthorizon rounded-md p-2 font-lemondays text-gtsecondary m-2 w-28">None</button>
             {:else}
                 {#each data.reqs[1] as req}
-                    <button on:click={() => redirect(req)} class="border-2 border-gthorizon rounded-md p-2 font-lemondays text-gtsecondary m-0.5 w-28"><span class="text-gt">{req.split(" ")[0]}</span> {req.split(" ")[1]}</button>
+                    <button on:click={() => redirect(req)} class="bg-gthorizon bg-opacity-15 border-2 border-gthorizon rounded-md p-2 font-lemondays text-gtsecondary m-2 w-28"><span class="text-gt">{req.split(" ")[0]}</span> {req.split(" ")[1]}</button>
                 {/each}
             {/if}
 

@@ -10,6 +10,20 @@
     margin: 0;
   }
 
+  *::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+  }
+
+  *::-webkit-scrollbar-track {
+    border-radius: 4px;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    @apply bg-gt;
+    border-radius: 4px;
+  }
+
   .leftmost-conditional {
     @apply border-t-4;
     border-image: linear-gradient(
