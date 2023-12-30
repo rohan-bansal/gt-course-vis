@@ -86,7 +86,7 @@
     <div class="flex-1 flex flex-col rounded-md max-w-full md:max-w-[33%] text-center">
         <h1 class="font-lemondays text-2xl text-gtsecondary underline decoration-gt underline-offset-4 decoration-4 mb-3">Info</h1>
         <div class="flex flex-col border-gt border-dashed border-2 md:border-none rounded-md p-1.5 m-2">
-            <p class="text-gtsecondary font-mono text-sm p-1.5">{@html courseFullDescription}</p>
+            <p class="text-gtsecondary font-mono text-sm p-1.5 mb-2">{@html courseFullDescription}</p>
             <a class="text-gt underline decoration-gtsecondary flex mx-auto" href="https://oscar.gatech.edu/pls/bprod/bwckctlg.p_disp_course_detail?cat_term_in=202402&subj_code_in={courseDesignator}&crse_numb_in={courseNumber}">Oscar <span class="inline-block scale-75 align-center"><ExternalLink /></span></a>
             {#await data.creditHrsGPA}
                 <h1 class="text-gt underline">...</h1>
@@ -106,7 +106,7 @@
         <h1 class="font-lemondays text-center text-2xl text-gtsecondary underline decoration-gt underline-offset-4 decoration-4 mb-3 mt-4 md:mt-0">Prereq For</h1>
         <div class="text-center items-center justify-center p-1.5 m-2">
             {#if data.reqs[1].length === 0}
-                <button class="border-2 border-gthorizon rounded-md p-2 font-lemondays text-gtsecondary m-2 w-28">None</button>
+                <button class="bg-gthorizon bg-opacity-15 border-2 border-gthorizon rounded-md p-2 font-lemondays text-gtsecondary m-2 w-28">None</button>
             {:else}
                 {#each data.reqs[1] as req}
                     <button on:click={() => redirect(req)} class="bg-gthorizon bg-opacity-15 border-2 border-gthorizon rounded-md p-2 font-lemondays text-gtsecondary m-2 w-28"><span class="text-gt">{req.split(" ")[0]}</span> {req.split(" ")[1]}</button>
