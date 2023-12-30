@@ -31,6 +31,7 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@vercel/analytics": "^1.1.1",
 		"axios": "^1.6.2",
 		"jsdom": "^23.0.1",
 		"lucide-svelte": "^0.301.0"

@@ -87,12 +87,12 @@
         <h1 class="font-lemondays text-2xl text-gtsecondary underline decoration-gt underline-offset-4 decoration-4 mb-3">Info</h1>
         <div class="flex flex-col border-gt border-dashed border-2 md:border-none rounded-md p-1.5 m-2">
             <p class="text-gtsecondary font-mono text-sm p-1.5 mb-2">{@html courseFullDescription}</p>
-            <a class="text-gt underline decoration-gtsecondary flex mx-auto" href="https://oscar.gatech.edu/pls/bprod/bwckctlg.p_disp_course_detail?cat_term_in=202402&subj_code_in={courseDesignator}&crse_numb_in={courseNumber}">Oscar <span class="inline-block scale-75 align-center"><ExternalLink /></span></a>
+            <a target="_blank" class="text-gt underline decoration-gtsecondary flex mx-auto" href="https://oscar.gatech.edu/pls/bprod/bwckctlg.p_disp_course_detail?cat_term_in=202402&subj_code_in={courseDesignator}&crse_numb_in={courseNumber}">Oscar <span class="inline-block scale-75 align-center"><ExternalLink /></span></a>
             {#await data.creditHrsGPA}
                 <h1 class="text-gt underline">...</h1>
             {:then creditHrsGPA} 
                 {#if creditHrsGPA[1] !== "N/A"}
-                    <a class="text-gt underline decoration-gtsecondary flex mx-auto" href="https://critique.gatech.edu/course?courseID={courseDesignator}%20{courseNumber}">Course Critique <span class="inline-block scale-75 align-center"><ExternalLink /></span></a>
+                    <a target="_blank" class="text-gt underline decoration-gtsecondary flex mx-auto" href="https://critique.gatech.edu/course?courseID={courseDesignator}%20{courseNumber}">Course Critique <span class="inline-block scale-75 align-center"><ExternalLink /></span></a>
                 {/if}
             {/await}
         </div>
