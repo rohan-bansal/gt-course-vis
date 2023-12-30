@@ -65,14 +65,14 @@
       <input on:focus|preventDefault
         use:melt={$input} on:keydown={(e) => {if (e.key === "Enter") redirect();}}
         class="flex h-10 items-center justify-between rounded-lg bg-white
-            px-3 pr-[2.5rem] text-black {makeRed ? 'border-4 border-red-500' : undefined}"
+            px-3 text-black {makeRed ? 'border-4 border-red-500' : undefined}"
         placeholder="Course Number"
       />
       {:else}
       <input
         use:melt={$input} on:keydown={(e) => {if (e.key === "Enter") redirect();}}
         class="flex h-10 items-center justify-between rounded-lg bg-white
-            px-3 pr-[2.5rem] text-black"
+            px-3 text-black"
         placeholder="Course Number"
       />
       {/if}
@@ -118,7 +118,7 @@
           {/if}
           <div class="pl-4">
             <span class="font-medium">{course.courseNumber}</span>
-            <span class="block text-sm opacity-75">{@html course.courseName}</span>
+            <span class="block text-xs opacity-75">{@html course.courseName}</span>
           </div>
         </li>
       {:else}
