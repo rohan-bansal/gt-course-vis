@@ -82,10 +82,10 @@
     {/if}
     
 </div>
-<div class="flex flex-1 justify-center flex-col md:flex-row mt-4 md:mt-6 mx-2 md:mx-12 mb-0 md:mb-4">
-    <div class="flex-1 flex flex-col rounded-md max-w-full md:max-w-[33%] text-center">
+<div class="flex flex-1 justify-center flex-col lg:flex-row mt-4 lg:mt-6 mx-2 lg:mx-12 mb-0 lg:mb-4">
+    <div class="flex-1 flex flex-col rounded-md max-w-full lg:max-w-[33%] text-center">
         <h1 class="font-lemondays text-2xl text-gtsecondary underline decoration-gt underline-offset-4 decoration-4 mb-3">Info</h1>
-        <div class="flex flex-col border-gt border-dashed border-2 md:border-none rounded-md p-1.5 m-2">
+        <div class="flex flex-col border-gt border-dashed border-2 lg:border-none rounded-md p-1.5 m-2 md:mx-32 lg:mx-0">
             <p class="text-gtsecondary font-mono text-sm p-1.5 mb-2">{@html courseFullDescription}</p>
             <a target="_blank" class="text-gt underline decoration-gtsecondary flex mx-auto" href="https://oscar.gatech.edu/pls/bprod/bwckctlg.p_disp_course_detail?cat_term_in=202402&subj_code_in={courseDesignator}&crse_numb_in={courseNumber}">Oscar <span class="inline-block scale-75 align-center"><ExternalLink /></span></a>
             {#await data.creditHrsGPA}
@@ -96,14 +96,13 @@
                 {/if}
             {/await}
         </div>
-        
-
     </div>
-    <div class="flex-auto rounded-md mt-3 mb-3 md:mx-2 md:mt-0 md:mb-0 items-center overflow-x-scroll">
+    <div class="flex-auto rounded-md mt-3 mb-3 lg:mx-2 lg:mt-0 lg:mb-0 items-center overflow-x-scroll text-center">
+        <h1 class="font-lemondays text-2xl text-gtsecondary underline decoration-gt underline-offset-4 decoration-4 mb-3 lg:mb-6">Requirements</h1>
         <PrereqTree treeData={data.reqs[0]} course={courseDesignator + " " + courseNumber}/>
     </div>
-    <div class="flex-1 rounded-md max-w-full md:max-w-[33%]">
-        <h1 class="font-lemondays text-center text-2xl text-gtsecondary underline decoration-gt underline-offset-4 decoration-4 mb-3 mt-4 md:mt-0">Prereq For</h1>
+    <div class="flex-1 rounded-md max-w-full lg:max-w-[33%]">
+        <h1 class="font-lemondays text-center text-2xl text-gtsecondary underline decoration-gt underline-offset-4 decoration-4 mb-3 mt-4 lg:mt-0">Prereq For</h1>
         <div class="text-center items-center justify-center p-1.5 m-2">
             {#if data.reqs[1].length === 0}
                 <button class="bg-gthorizon bg-opacity-15 border-2 border-gthorizon rounded-md p-2 font-lemondays text-gtsecondary m-2 w-28">None</button>

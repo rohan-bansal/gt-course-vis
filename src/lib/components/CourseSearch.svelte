@@ -106,17 +106,12 @@
       {#each filteredCourses as course, index (index)}
         <li
           use:melt={$option(toOption(course))}
-          class="relative cursor-pointer scroll-my-2 rounded-md py-2 pl-4 pr-4
+          class="relative cursor-pointer scroll-my-2 rounded-md py-2 pr-4
         hover:bg-gt
         data-[highlighted]:bg-gt data-[highlighted]:text-gtsecondary
           data-[disabled]:opacity-50"
         >
-          {#if course.courseNumber === $selected?.value}
-            <div class="check absolute left-2 top-1/2 z-10 text-gtdark">
-              <Check class="square-4 scale-75" />
-            </div>
-          {/if}
-          <div class="pl-4">
+          <div class="pl-2">
             <span class="font-medium">{course.courseNumber}</span>
             <span class="block text-xs opacity-75">{@html course.courseName}</span>
           </div>
@@ -129,10 +124,3 @@
     </div>
   </ul>
 {/if}
-
-<style lang="postcss">
-  .check {
-    @apply absolute left-0.5 top-1/2;
-    translate: 0 calc(-50% + 1px);
-  }
-</style>
