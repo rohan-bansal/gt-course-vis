@@ -1,0 +1,8 @@
+/**
+ * A utility function that converts a style object to a string.
+ *
+ * @param style - The style object to convert
+ * @returns The style object as a string
+ */
+export declare function styleToString(style: StyleObject): string;
+export type StyleObject = Record<string, number | string | undefined>;

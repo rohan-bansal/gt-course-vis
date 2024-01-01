@@ -1,0 +1,9 @@
+import type { GroupedEvents, MeltComponentEvents } from '../../internal/types.js';
+export declare const comboboxEvents: {
+    input: readonly ["click", "keydown", "input"];
+    trigger: readonly ["click", "keydown", "input"];
+    menu: readonly ["pointerleave"];
+    item: readonly ["pointermove", "click"];
+};
+export type ComboboxEvents = GroupedEvents<typeof comboboxEvents>;
+export type ComboboxComponentEvents = MeltComponentEvents<ComboboxEvents>;
