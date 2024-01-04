@@ -15,6 +15,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
         with:
+          ref: crawler
           persist-credentials: false
 
       - name: Checkout data
