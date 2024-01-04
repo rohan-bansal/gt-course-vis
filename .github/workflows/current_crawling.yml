@@ -1,10 +1,10 @@
-name: Crawling
+name: Current Term Crawling
 on:
   push:
     branches:
       - crawler
   schedule:
-    - cron: "0 */12 * * *"
+    - cron: "0 */3 * * *"
 concurrency:
   group: crawling
 
@@ -41,7 +41,7 @@ jobs:
         run: yarn start
         env:
           LOG_FORMAT: json
-          NUM_TERMS: 16
+          NUM_TERMS: 2
           ALWAYS_SCRAPE_CURRENT_TERM: 1
           DETAILS_CONCURRENCY: 256
           DATA_FOLDER: ./data
@@ -56,5 +56,4 @@ jobs:
         with:
           branch: crawler-gh-pages
           folder: ./data
-          clean: true
           single-commit: true
