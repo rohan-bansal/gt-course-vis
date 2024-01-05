@@ -1,4 +1,4 @@
-name: Current Term Crawling
+name: Crawling
 on:
   push:
     branches:
@@ -56,4 +56,5 @@ jobs:
         with:
           branch: crawler-gh-pages
           folder: ./data
+          clean: true
           single-commit: true
