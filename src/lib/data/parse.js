@@ -1,5 +1,19 @@
+import semesterStore from "$lib/stores/semesterStore.js";
 import courseData from "$lib/data/202402.json";
 import departments from "$lib/data/departments.json";
+
+let currentSemester = "202402";
+
+semesterStore.subscribe((value) => {
+  currentSemester = value;
+});
+
+async function getCourseJSONBySemesterID(semesterID) {
+  const response = await fetch(
+    `https://rohan-bansal.github.io/gt-course-vis/${semesterID}.json`,
+  );
+  return await response.json();
+}
 
 function getKeysPairedWithNthElement(jsonObj, n) {
   return Object.keys(jsonObj).reduce((result, key) => {

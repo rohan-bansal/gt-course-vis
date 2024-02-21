@@ -8,6 +8,7 @@ import { error } from "@sveltejs/kit";
 
 import axios from "axios";
 import { JSDOM } from "jsdom";
+import semesterStore from "$lib/stores/semesterStore.js";
 
 export async function load({ params, url }) {
   let designator = url.pathname.split("/")[2];
@@ -83,7 +84,7 @@ async function getCourseCreditHoursGPA(designator, course) {
     try {
       const res = await axios({
         method: "get",
-        url: `https://oscar.gatech.edu/pls/bprod/bwckctlg.p_disp_course_detail?cat_term_in=202402&subj_code_in=${designator}&crse_numb_in=${course}`,
+        url: `https://oscar.gatech.edu/pls/bprod/bwckctlg.p_disp_course_detail?cat_term_in=${$semesterStore}&subj_code_in=${designator}&crse_numb_in=${course}`,
         timeout: 10000,
       }).catch((e) => {
         return null;

@@ -3,6 +3,8 @@
     import { createTooltip, melt } from '@melt-ui/svelte';
     import { fade } from 'svelte/transition';
 
+    import semesterStore from '$lib/stores/semesterStore.js';
+
     import { ExternalLink, HelpCircle, Link } from 'lucide-svelte'; 
 	import PrereqTree from '$lib/components/PrereqTree.svelte';
     export let data;
@@ -42,7 +44,7 @@
         <h1 class="text-4xl md:text-5xl font-lemondays text-gtsecondary mb-2 ml-6 ">
             <span class="text-gt">{courseDesignator}</span>{courseNumber}
         </h1>
-        <a target="_blank" href="https://oscar.gatech.edu/pls/bprod/bwckctlg.p_disp_course_detail?cat_term_in=202402&subj_code_in={courseDesignator}&crse_numb_in={courseNumber}"><ExternalLink class="ml-1 text-gtsecondary"/></a>
+        <a target="_blank" href="https://oscar.gatech.edu/pls/bprod/bwckctlg.p_disp_course_detail?cat_term_in={$semesterStore}&subj_code_in={courseDesignator}&crse_numb_in={courseNumber}"><ExternalLink class="ml-1 text-gtsecondary"/></a>
     </div>
 
     <h1 class="text-md md:text-xl text-center leading-9 font-mono text-gtsecondary mb-4 underline decoration-wavy decoration-2 underline-offset-8">
@@ -89,7 +91,7 @@
         <h1 class="font-lemondays text-2xl text-gtsecondary underline decoration-gt underline-offset-4 decoration-4 mb-3">Info</h1>
         <div class="flex flex-col border-gt border-dashed border-2 lg:border-none rounded-md p-1.5 m-2 md:mx-32 lg:mx-0">
             <p class="text-gtsecondary font-mono text-sm p-1.5 mb-2">{@html courseFullDescription}</p>
-            <a target="_blank" class="text-gt underline decoration-gtsecondary flex mx-auto" href="https://oscar.gatech.edu/pls/bprod/bwckctlg.p_disp_course_detail?cat_term_in=202402&subj_code_in={courseDesignator}&crse_numb_in={courseNumber}">Oscar <span class="inline-block scale-75 align-center"><ExternalLink /></span></a>
+            <a target="_blank" class="text-gt underline decoration-gtsecondary flex mx-auto" href="https://oscar.gatech.edu/pls/bprod/bwckctlg.p_disp_course_detail?cat_term_in={$semesterStore}&subj_code_in={courseDesignator}&crse_numb_in={courseNumber}">Oscar <span class="inline-block scale-75 align-center"><ExternalLink /></span></a>
             {#await data.creditHrsGPA}
                 <h1 class="text-gt underline">...</h1>
             {:then creditHrsGPA} 

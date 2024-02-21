@@ -30,7 +30,7 @@
             <ul>
                 <li>
                     <div>
-                        <h1 class="font-mono underline conditional">{data[0] === "and" ? "all" : "any"}</h1>
+                        <h1 class="font-mono underline conditional">{data[0] === "and" ? "all of" : "any of"}</h1>
                     </div>
                     {#if restElementsNotArray(data)}
                         <ul class="flex flex-col">
