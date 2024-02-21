@@ -57,14 +57,13 @@ jobs:
           folder: ./data
           clean: true
           single-commit: true
-        
+
       - name: Copy Course Data
         uses: nkoppel/push-files-to-another-repository@v1.1.2
         with:
-          source-files: './data'
-          destination-username: 'rohan-bansal'
-          destination-repository: 'https://github.com/rohan-bansal/gt-course-vis/'
-          destination-branch: 'main'
-          destination-directory: 'src/lib/data'
-          commit-email: 'bansalrohan18@gmail.com'
-            
+          source-files: "./data"
+          destination-username: "rohan-bansal"
+          destination-repository: "gt-course-vis"
+          destination-branch: "main"
+          destination-directory: "src/lib/data"
+          commit-email: "bansalrohan18@gmail.com"
