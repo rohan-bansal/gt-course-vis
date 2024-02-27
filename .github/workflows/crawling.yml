@@ -57,15 +57,3 @@ jobs:
           folder: ./data
           clean: true
           single-commit: true
-
-      - name: Copy Course Data
-        uses: nkoppel/push-files-to-another-repository@v1.1.2
-        env:
-          API_TOKEN_GITHUB: ${{ secrets.CRAWLER_DEPLOY_PERSONAL_ACCESS_TOKEN }}
-        with:
-          source-files: "./data"
-          destination-username: "rohan-bansal"
-          destination-repository: "gt-course-vis"
-          destination-branch: "main"
-          destination-directory: "src/lib/data"
-          commit-email: "bansalrohan18@gmail.com"
