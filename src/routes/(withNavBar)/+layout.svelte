@@ -25,6 +25,7 @@
         <div class="grid place-content-center md:mb-0 mb-2">
             <div class="flex flex-col md:flex-row">
                 <a href="/"><h1 class="text-4xl font-lemondays text-gtsecondary mx-6"><span class="text-gt">GT</span> Co.Vis.</h1></a>
+                <button class="my-auto mx auto text-md text-gtdark font-bold">Fall 2024</button>
                     <!-- {#await data.semesters}
                         ...
                     {:then semesters} 
