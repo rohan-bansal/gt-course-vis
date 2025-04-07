@@ -1,9 +1,9 @@
 import semesterStore from "$lib/stores/semesterStore.js";
-import courseData from "$lib/data/semesters/202408.json";
+import courseData from "$lib/data/semesters/202508.json";
 import departments from "$lib/data/departments.json";
 // let courseData = import(`$lib/data/semesters/202402.json`);
 
-let currentSemester = "202408";
+let currentSemester = "202508";
 
 semesterStore.subscribe((value) => {
   currentSemester = value;
