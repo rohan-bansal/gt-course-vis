@@ -1,10 +1,9 @@
 import { browser } from "$app/environment";
 import { writable } from "svelte/store";
 
-const defaultValue = "202402";
-const initialValue = browser
-  ? window.localStorage.getItem("semester") ?? defaultValue
-  : defaultValue;
+const defaultValue = "202608";
+const storedValue = browser ? window.localStorage.getItem("semester") : null;
+const initialValue = storedValue === defaultValue ? storedValue : defaultValue;
 
 const semesterStore = writable(initialValue);
 

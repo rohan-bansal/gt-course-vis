@@ -1,22 +1,5 @@
-import semesterStore from "$lib/stores/semesterStore.js";
-import courseData from "$lib/data/semesters/202508.json";
+import courseData from "$lib/data/semesters/202608.json";
 import departments from "$lib/data/departments.json";
-// let courseData = import(`$lib/data/semesters/202402.json`);
-
-let currentSemester = "202508";
-
-semesterStore.subscribe((value) => {
-  currentSemester = value;
-  console.log(currentSemester);
-  // courseData = import(`$lib/data/semesters/${currentSemester}.json`);
-});
-
-async function getCourseJSONBySemesterID(semesterID) {
-  const response = await fetch(
-    `https://rohan-bansal.github.io/gt-course-vis/${semesterID}.json`,
-  );
-  return await response.json();
-}
 
 function getKeysPairedWithNthElement(jsonObj, n) {
   return Object.keys(jsonObj).reduce((result, key) => {
