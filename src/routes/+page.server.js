@@ -1,9 +1,14 @@
-import { getCourseNumbersAndNames } from "$lib/data/parse.js";
+import {
+  previousComparableSemester,
+  semesterLabel,
+} from "$lib/data/semesters.js";
 
-export async function load() {
-  let data = getCourseNumbersAndNames();
+export async function load({ parent }) {
+  const { semester } = await parent();
+  const vs = previousComparableSemester(semester);
 
   return {
-    courses: await data,
+    vs,
+    vsLabel: vs ? semesterLabel(vs) : "",
   };
 }

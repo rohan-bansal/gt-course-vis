@@ -9,6 +9,9 @@
 
 </script>
 
-<slot />
-
-<Footer />
+<div class="flex h-full min-h-0 flex-col">
+    <div class="min-h-0 flex-1 overflow-y-auto">
+        <slot />
+    </div>
+    <Footer />
+</div>
