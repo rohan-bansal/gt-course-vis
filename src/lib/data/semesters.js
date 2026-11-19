@@ -1,4 +1,6 @@
-// Drop new catalogs in this folder as YYYYMM.json (02 Spring, 05 Summer, 08 Fall).
+// Catalogs live in ./semesters/YYYYMM.json (02 Spring, 05 Summer, 08 Fall).
+// They are synced from the GT Scheduler crawler by `npm run sync:semesters`,
+// which a weekly GitHub Action runs and commits automatically.
 const semesterLoaders = import.meta.glob("./semesters/*.json");
 
 const SEASON_LABELS = {

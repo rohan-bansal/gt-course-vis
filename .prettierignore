@@ -2,3 +2,6 @@
 pnpm-lock.yaml
 package-lock.json
 yarn.lock
+
+# Semester catalogs (synced from the crawler, not hand-formatted)
+src/lib/data/semesters/

@@ -8,7 +8,8 @@
 		"preview": "vite preview",
 		"test": "playwright test",
 		"lint": "prettier --check . && eslint .",
-		"format": "prettier --write ."
+		"format": "prettier --write .",
+		"sync:semesters": "node scripts/sync-semesters.js"
 	},
 	"devDependencies": {
 		"@melt-ui/pp": "^0.2.0",

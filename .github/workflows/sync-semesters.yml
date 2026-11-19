@@ -1,0 +1,39 @@
+name: Sync semester catalogs
+
+on:
+  schedule:
+    - cron: "0 10 * * 1" # Mondays 10:00 UTC
+  workflow_dispatch: # "Run workflow" button in the Actions tab
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sync-semesters
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Download catalogs from GT Scheduler crawler
+        run: node scripts/sync-semesters.js
+
+      - name: Commit changes
+        run: |
+          git add src/lib/data/semesters
+          if git diff --cached --quiet; then
+            echo "Catalogs already up to date."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          terms=$(git diff --cached --name-only | sed -E 's#.*/([0-9]{6})\.json#\1#' | paste -sd, -)
+          git commit -m "data: sync semester catalogs ($terms)"
+          git push
